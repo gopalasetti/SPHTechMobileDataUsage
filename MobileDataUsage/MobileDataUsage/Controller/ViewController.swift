@@ -8,17 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, YearCellDelegate {
 
+    @IBOutlet weak var mobileDataUsageTableView: UITableView!
+    
     var years : [Year]  = []
+
+    var expandedSections : [Int] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mobileDataUsageTableView.tableFooterView = UIView()
+
         years = Year.fetchYear()
+        
+        mobileDataUsageTableView.layer.borderColor = UIColor.black.cgColor
+        mobileDataUsageTableView.layer.borderWidth = 1.0
         
         getDataUsageFromServer { (response, json) in
             self.saveDataToDB(data: json as! [String : Any])
+            self.years = Year.fetchYear()
+            DispatchQueue.main.async {
+                self.mobileDataUsageTableView.reloadData()
+            }
         }
     }
 
@@ -46,5 +59,71 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - TableView
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return years.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if expandedSections.contains(section) {
+            let querters = years[section].quarter?.allObjects as? [Quarter] ?? []
+            return querters.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let yearView = tableView.dequeueReusableCell(withIdentifier: "YearDataCell") as! YearDataCell
+        yearView.delegate = self
+        yearView.updateYearDetails(years[section])
+        yearView.tag = section
+        return yearView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let quarterCell = tableView.dequeueReusableCell(withIdentifier: "QuarterDataCell") as! QuarterDataCell
+        if let quarter = fetchQuarterByYearAndName(year: years[indexPath.section], quarterName: "Q\(indexPath.row+1)") {
+            quarterCell.quarterName.text = quarter.name ?? ""
+            quarterCell.dataUsageLbl.text = "\(quarter.data)"
+        }
+        return quarterCell
+    }
+
+    // MARK: - YearCellDelegate
+
+    func infoBtnClicked(index: Int) {
+        if expandedSections.contains(index) {
+            expandedSections = expandedSections.filter{$0 != index}
+        }
+        else {
+            expandedSections.append(index)
+        }
+        DispatchQueue.main.async {
+            self.mobileDataUsageTableView.reloadData()
+        }
+    }
+
+    
+    /// To get the quarter based on the name and year
+    ///
+    /// - Parameters:
+    ///   - year: year
+    ///   - quarterName: name of the quarter
+    /// - Returns: returns the quarter details
+    func fetchQuarterByYearAndName(year: Year, quarterName: String) -> Quarter? {
+        let quarters = year.quarter?.allObjects as? [Quarter] ?? []
+        for quarter in quarters {
+            if quarter.name == quarterName {
+                return quarter
+            }
+        }
+        return nil
+    }
+
 }
 

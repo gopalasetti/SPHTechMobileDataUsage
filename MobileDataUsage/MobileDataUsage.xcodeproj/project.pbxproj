@@ -22,6 +22,8 @@
 		0F7B8BE321AEF37B003AFAAD /* Year+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BDF21AEF37B003AFAAD /* Year+CoreDataClass.swift */; };
 		0F7B8BE421AEF37B003AFAAD /* Year+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BE021AEF37B003AFAAD /* Year+CoreDataProperties.swift */; };
 		0F7B8BE621AEF8D4003AFAAD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BE521AEF8D4003AFAAD /* CoreDataStack.swift */; };
+		0F7B8BEA21AF103E003AFAAD /* YearDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BE921AF103E003AFAAD /* YearDataCell.swift */; };
+		0F7B8BEC21AF1050003AFAAD /* QuarterDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BEB21AF1050003AFAAD /* QuarterDataCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		0F7B8BDF21AEF37B003AFAAD /* Year+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Year+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0F7B8BE021AEF37B003AFAAD /* Year+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Year+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0F7B8BE521AEF8D4003AFAAD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		0F7B8BE921AF103E003AFAAD /* YearDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearDataCell.swift; sourceTree = "<group>"; };
+		0F7B8BEB21AF1050003AFAAD /* QuarterDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterDataCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 		0F7B8BD521AEEDD9003AFAAD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F7B8BE921AF103E003AFAAD /* YearDataCell.swift */,
+				0F7B8BEB21AF1050003AFAAD /* QuarterDataCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			files = (
 				0F7B8BE321AEF37B003AFAAD /* Year+CoreDataClass.swift in Sources */,
 				0F7B8BE421AEF37B003AFAAD /* Year+CoreDataProperties.swift in Sources */,
+				0F7B8BEC21AF1050003AFAAD /* QuarterDataCell.swift in Sources */,
 				0F7B8BDC21AEEF49003AFAAD /* Constants.swift in Sources */,
 				0F7B8BA621AEEDB4003AFAAD /* ViewController.swift in Sources */,
 				0F7B8BA421AEEDB4003AFAAD /* AppDelegate.swift in Sources */,
@@ -329,6 +336,7 @@
 				0F7B8BE221AEF37B003AFAAD /* Quarter+CoreDataProperties.swift in Sources */,
 				0F7B8BAC21AEEDB4003AFAAD /* MobileDataUsage.xcdatamodeld in Sources */,
 				0F7B8BE121AEF37B003AFAAD /* Quarter+CoreDataClass.swift in Sources */,
+				0F7B8BEA21AF103E003AFAAD /* YearDataCell.swift in Sources */,
 				0F7B8BDA21AEEEAD003AFAAD /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
