@@ -17,6 +17,10 @@
 		0F7B8BC721AEEDB4003AFAAD /* MobileDataUsageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BC621AEEDB4003AFAAD /* MobileDataUsageUITests.swift */; };
 		0F7B8BDA21AEEEAD003AFAAD /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BD921AEEEAD003AFAAD /* ServiceManager.swift */; };
 		0F7B8BDC21AEEF49003AFAAD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BDB21AEEF49003AFAAD /* Constants.swift */; };
+		0F7B8BE121AEF37B003AFAAD /* Quarter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BDD21AEF37B003AFAAD /* Quarter+CoreDataClass.swift */; };
+		0F7B8BE221AEF37B003AFAAD /* Quarter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BDE21AEF37B003AFAAD /* Quarter+CoreDataProperties.swift */; };
+		0F7B8BE321AEF37B003AFAAD /* Year+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BDF21AEF37B003AFAAD /* Year+CoreDataClass.swift */; };
+		0F7B8BE421AEF37B003AFAAD /* Year+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BE021AEF37B003AFAAD /* Year+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		0F7B8BC821AEEDB4003AFAAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F7B8BD921AEEEAD003AFAAD /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		0F7B8BDB21AEEF49003AFAAD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0F7B8BDD21AEF37B003AFAAD /* Quarter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quarter+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0F7B8BDE21AEF37B003AFAAD /* Quarter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quarter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0F7B8BDF21AEF37B003AFAAD /* Year+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Year+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0F7B8BE021AEF37B003AFAAD /* Year+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Year+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,10 @@
 		0F7B8BD421AEEDD1003AFAAD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F7B8BDD21AEF37B003AFAAD /* Quarter+CoreDataClass.swift */,
+				0F7B8BDE21AEF37B003AFAAD /* Quarter+CoreDataProperties.swift */,
+				0F7B8BDF21AEF37B003AFAAD /* Year+CoreDataClass.swift */,
+				0F7B8BE021AEF37B003AFAAD /* Year+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,10 +317,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7B8BE321AEF37B003AFAAD /* Year+CoreDataClass.swift in Sources */,
+				0F7B8BE421AEF37B003AFAAD /* Year+CoreDataProperties.swift in Sources */,
 				0F7B8BDC21AEEF49003AFAAD /* Constants.swift in Sources */,
 				0F7B8BA621AEEDB4003AFAAD /* ViewController.swift in Sources */,
 				0F7B8BA421AEEDB4003AFAAD /* AppDelegate.swift in Sources */,
+				0F7B8BE221AEF37B003AFAAD /* Quarter+CoreDataProperties.swift in Sources */,
 				0F7B8BAC21AEEDB4003AFAAD /* MobileDataUsage.xcdatamodeld in Sources */,
+				0F7B8BE121AEF37B003AFAAD /* Quarter+CoreDataClass.swift in Sources */,
 				0F7B8BDA21AEEEAD003AFAAD /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
