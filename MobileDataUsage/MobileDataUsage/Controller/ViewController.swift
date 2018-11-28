@@ -10,11 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var years : [Year]  = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        years = Year.fetchYear()
+        
         getDataUsageFromServer { (response, json) in
-            print(json)
+            self.saveDataToDB(data: json as! [String : Any])
         }
     }
 
@@ -30,5 +34,17 @@ class ViewController: UIViewController {
         }
     }
 
+    
+    /// Parse the data and save records to DB
+    ///
+    /// - Parameter data: response Date
+    func saveDataToDB(data: [String: Any]) {
+        if let result = data["result"] as? [String: Any] {
+            if let records = result["records"] as? [[String: Any]] {
+                Year.addDataUsageRecords(records)
+            }
+        }
+    }
+    
 }
 
