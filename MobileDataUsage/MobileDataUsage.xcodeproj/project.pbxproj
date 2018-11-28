@@ -15,6 +15,8 @@
 		0F7B8BB121AEEDB4003AFAAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F7B8BAF21AEEDB4003AFAAD /* LaunchScreen.storyboard */; };
 		0F7B8BBC21AEEDB4003AFAAD /* MobileDataUsageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BBB21AEEDB4003AFAAD /* MobileDataUsageTests.swift */; };
 		0F7B8BC721AEEDB4003AFAAD /* MobileDataUsageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BC621AEEDB4003AFAAD /* MobileDataUsageUITests.swift */; };
+		0F7B8BDA21AEEEAD003AFAAD /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BD921AEEEAD003AFAAD /* ServiceManager.swift */; };
+		0F7B8BDC21AEEF49003AFAAD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7B8BDB21AEEF49003AFAAD /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		0F7B8BC221AEEDB4003AFAAD /* MobileDataUsageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileDataUsageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7B8BC621AEEDB4003AFAAD /* MobileDataUsageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDataUsageUITests.swift; sourceTree = "<group>"; };
 		0F7B8BC821AEEDB4003AFAAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F7B8BD921AEEEAD003AFAAD /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		0F7B8BDB21AEEF49003AFAAD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 		0F7B8BD721AEEDEE003AFAAD /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0F7B8BD921AEEEAD003AFAAD /* ServiceManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				0F7B8BAD21AEEDB4003AFAAD /* Assets.xcassets */,
 				0F7B8BAF21AEEDB4003AFAAD /* LaunchScreen.storyboard */,
 				0F7B8BAA21AEEDB4003AFAAD /* MobileDataUsage.xcdatamodeld */,
+				0F7B8BDB21AEEF49003AFAAD /* Constants.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -299,9 +305,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7B8BDC21AEEF49003AFAAD /* Constants.swift in Sources */,
 				0F7B8BA621AEEDB4003AFAAD /* ViewController.swift in Sources */,
 				0F7B8BA421AEEDB4003AFAAD /* AppDelegate.swift in Sources */,
 				0F7B8BAC21AEEDB4003AFAAD /* MobileDataUsage.xcdatamodeld in Sources */,
+				0F7B8BDA21AEEEAD003AFAAD /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

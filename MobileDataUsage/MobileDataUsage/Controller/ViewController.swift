@@ -12,9 +12,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        getDataUsageFromServer { (response, json) in
+            print(json)
+        }
     }
 
+    /// Get Data from server
+    ///
+    /// - Parameter handler: handel the response
+    func getDataUsageFromServer(handler: @escaping (_ response: URLResponse?, _ json: Any) -> Void) {
+        let url = URL(string: Constants.serviceURL)
+        ServiceManager.get(url!, { (response, data) in
+            handler(response, data)
+        }) { (response, error) in
+            
+        }
+    }
 
 }
 
