@@ -13,10 +13,6 @@ import CoreData
 
 extension Quarter {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Quarter> {
-        return NSFetchRequest<Quarter>(entityName: "Quarter")
-    }
-
     @NSManaged public var name: String?
     @NSManaged public var identifier: Int16
     @NSManaged public var data: Double

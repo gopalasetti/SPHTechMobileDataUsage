@@ -13,10 +13,6 @@ import CoreData
 
 extension Year {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Year> {
-        return NSFetchRequest<Year>(entityName: "Year")
-    }
-
     @NSManaged public var name: Int16
     @NSManaged public var quarter: NSSet?
 
