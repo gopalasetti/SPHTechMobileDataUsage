@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol YearCellDelegate {
+protocol YearCellDelegate: class {
     
     /// TO Display the list of quarters
     ///
@@ -25,17 +25,11 @@ class YearDataCell: UITableViewCell {
     
     @IBOutlet weak var detailsOfYearBtn: UIButton!
     
-    var delegate: YearCellDelegate?
+    weak var delegate: YearCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func showDetailsOfYearBtnAction(_ sender: Any) {

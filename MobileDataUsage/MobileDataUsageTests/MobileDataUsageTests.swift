@@ -24,6 +24,8 @@ class MobileDataUsageTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    
+    /// To Test the response of the data from service
     func testServiceData() {
         let service = expectation(description: "MobileDataUsage service")
 
@@ -52,28 +54,54 @@ class MobileDataUsageTests: XCTestCase {
 
     }
     
+    /// To Test weather data is saved successfully into the DB
     func testSaveDataToDB() {
-        viewController.saveDataToDB(data: result)
-        let fetchResults = Year.fetchYear()
-        if fetchResults.count > 0 {
-            let year = fetchResults[0]
-            if year.name != 2008 {
-                XCTAssertFalse(true, "Name is not saved successfully")
+        viewController.saveDataToDB(data: result) { (inserted) in
+            let fetchResults = Year.fetchYear()
+            if fetchResults.count > 0 {
+                let year = fetchResults[0]
+                if year.name != 2008 {
+                    XCTAssertFalse(true, "Name is not saved")
+                }
             }
         }
     }
     
+    /// To Test we are retriving the proper quater info of the year
     func testFetchQuarterByYearAndName() {
-        viewController.saveDataToDB(data: result)
-        let fetchResults = Year.fetchYear()
-        if fetchResults.count > 0 {
-            let year = fetchResults[0]
-            let quarter = viewController.fetchQuarterByYearAndName(year: year, quarterName: "Q1")
-            let dataUsage = quarter?.data
-            if dataUsage == nil || dataUsage != 0.171586 {
-                XCTAssertFalse(true, "We have not get the correct quarter data")
+        viewController.saveDataToDB(data: result) { (inserted) in
+            let fetchResults = Year.fetchYear()
+            if fetchResults.count > 0 {
+                let year = fetchResults[0]
+                let quarter = Year.fetchQuarterByYearAndName(year: year, quarterName: "Q1")
+                let dataUsage = quarter?.data
+                if dataUsage == nil || dataUsage != 0.171586 {
+                    XCTAssertFalse(true, "We have not get the correct quarter data")
+                }
             }
         }
     }
 
+    /// To Test the error handling scenario of the service
+    func testServiceError() {
+        let service = expectation(description: "MobileDataUsage service")
+
+        let url = URL(string:"https://data.gov.sg/api/action/datastore_search?offset=14&limit=54&resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0")!
+        ServiceManager.get(url
+            , { (response, json) in
+                service.fulfill()
+        }) { (response, error) in
+            if let httpResponse = response as? HTTPURLResponse {
+                XCTAssert(httpResponse.statusCode == 404, "Getting Different Ststus Code \(httpResponse.statusCode)")
+            }
+            service.fulfill()
+        }
+        
+        waitForExpectations(timeout: 20) { (error) in
+            if let e = error {
+                XCTAssertFalse(true, e.localizedDescription)
+            }
+        }
+    }
+    
 }

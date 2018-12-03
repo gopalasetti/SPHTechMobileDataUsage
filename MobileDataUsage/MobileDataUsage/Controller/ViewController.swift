@@ -27,11 +27,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mobileDataUsageTableView.layer.borderWidth = 1.0
         
         getDataUsageFromServer { (response, json) in
-            self.saveDataToDB(data: json as! [String : Any])
-            self.years = Year.fetchYear()
-            DispatchQueue.main.async {
-                self.mobileDataUsageTableView.reloadData()
-            }
+            self.saveDataToDB(data: json as! [String : Any], handler: { (inserted) in
+                self.years = Year.fetchYear()
+                DispatchQueue.main.async {
+                    self.mobileDataUsageTableView.reloadData()
+                }
+            })
         }
     }
 
@@ -43,22 +44,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ServiceManager.get(url!, { (response, data) in
             handler(response, data)
         }) { (response, error) in
-            
+            let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 
-    
     /// Parse the data and save records to DB
     ///
     /// - Parameter data: response Date
-    func saveDataToDB(data: [String: Any]) {
+    func saveDataToDB(data: [String: Any], handler: @escaping (_ inserted: Bool) -> Void) {
         if let result = data["result"] as? [String: Any] {
             if let records = result["records"] as? [[String: Any]] {
-                Year.addDataUsageRecords(records)
+                Year.addDataUsageRecords(records) { (inserted) in
+                    handler(true)
+                }
             }
         }
     }
-    
+
     // MARK: - TableView
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,7 +90,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let quarterCell = tableView.dequeueReusableCell(withIdentifier: "QuarterDataCell") as! QuarterDataCell
-        if let quarter = fetchQuarterByYearAndName(year: years[indexPath.section], quarterName: "Q\(indexPath.row+1)") {
+        if let quarter = Year.fetchQuarterByYearAndName(year: years[indexPath.section], quarterName: "Q\(indexPath.row+1)") {
             quarterCell.quarterName.text = quarter.name ?? ""
             quarterCell.dataUsageLbl.text = "\(quarter.data)"
         }
@@ -106,23 +109,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         DispatchQueue.main.async {
             self.mobileDataUsageTableView.reloadData()
         }
-    }
-
-    
-    /// To get the quarter based on the name and year
-    ///
-    /// - Parameters:
-    ///   - year: year
-    ///   - quarterName: name of the quarter
-    /// - Returns: returns the quarter details
-    func fetchQuarterByYearAndName(year: Year, quarterName: String) -> Quarter? {
-        let quarters = year.quarter?.allObjects as? [Quarter] ?? []
-        for quarter in quarters {
-            if quarter.name == quarterName {
-                return quarter
-            }
-        }
-        return nil
     }
 
 }
